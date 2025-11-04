@@ -65,7 +65,7 @@
         return;
       }
 
-      const apiUrl = https://api.wolframalpha.com/v1/result?i=${encodeURIComponent(input)}&appid=${appId};
+    const apiUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(https://api.wolframalpha.com/v1/result?i=${encodeURIComponent(input)}&appid=${appId})}`;
 
       try {
         const response = await fetch(apiUrl);
