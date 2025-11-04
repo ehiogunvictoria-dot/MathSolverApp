@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f7f9fc;
+      background: #eef3fa;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -16,7 +16,7 @@
       margin: 0;
     }
     h1 {
-      color: #222;
+      color: #333;
       margin-bottom: 20px;
     }
     input {
@@ -50,7 +50,7 @@
 </head>
 <body>
   <h1>🧮 Math Solver App</h1>
-  <input type="text" id="problem" placeholder="Enter a math problem (e.g. 2x + 5 = 15)">
+  <input type="text" id="problem" placeholder="Enter a math problem (e.g. 2+5 or integrate x^2)">
   <button onclick="solveProblem()">Solve</button>
   <div id="solution"></div>
 
@@ -65,17 +65,19 @@
         return;
       }
 
-    const apiUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(https://api.wolframalpha.com/v1/result?i=${encodeURIComponent(input)}&appid=${appId})}`;
+      // ✅ Use a CORS proxy so the API works from GitHub Pages
+      const query = encodeURIComponent(input);
+      const wolframUrl = https://api.wolframalpha.com/v1/result?i=${query}&appid=${appId};
+      const apiUrl = https://api.allorigins.win/raw?url=${encodeURIComponent(wolframUrl)};
 
       try {
+        output.innerHTML = "⏳ Solving...";
         const response = await fetch(apiUrl);
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
+        if (!response.ok) throw new Error("Network error");
         const result = await response.text();
         output.innerHTML = ✅ <b>Answer:</b> ${result};
       } catch (error) {
-        output.innerHTML = "❌ Unable to solve this problem. Please try another question.";
+        output.innerHTML = "❌ Unable to solve this problem. Try a simpler query (e.g., 2+2).";
       }
     }
   </script>
