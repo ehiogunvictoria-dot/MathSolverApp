@@ -1,71 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Math Solver App</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f7f8fa;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-    input {
-      padding: 10px;
-      width: 300px;
-      font-size: 16px;
-    }
-    button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      font-size: 16px;
-      background: #007bff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #0056b3;
-    }
-    #solution {
-      margin-top: 20px;
-      font-size: 18px;
-    }
-  </style>
-</head>
-<body>
-  <h1>🧮 Math Solver App</h1>
-  <input type="text" id="problem" placeholder="Enter a math problem (e.g. 2x + 5 = 15)">
-  <button onclick="solveProblem()">Solve</button>
-  <div id="solution"></div>
-
-  <script>
-    async function solveProblem() {
-      const input = document.getElementById("problem").value;
-      const output = document.getElementById("solution");
-      const appId = "YOUR_APP_ID_HERE"; // 🔹 Replace with your real App ID
-
-      if (!input.trim()) {
-        output.innerHTML = "⚠ Please enter a math problem.";
-        return;
-      }
-
-      const apiUrl = https://api.wolframalpha.com/v1/result?i=${encodeURIComponent(input)}&appid=${appId};
-
-      try {
-        const response = await fetch(apiUrl);
-        const result = await response.text();
-        output.innerHTML = ✅ <b>Answer:</b> ${result};
-      } catch (error) {
-        output.innerHTML = "❌ Unable to solve this problem.";
-      }
-    }
-  </script><script>
+<script>
   async function solveProblem() {
     const input = document.getElementById("problem").value;
     const output = document.getElementById("solution");
@@ -87,5 +20,3 @@
     }
   }
 </script>
-</body>
-</html>
